@@ -15,6 +15,11 @@ php artisan serve
 
 Create .env.testing file for testing. Also, create a new DB for running automated tests. Use this DB name in the DB_DATABASE constant.
 
+To run the tests, run
+```bash
+php artisan test
+```
+
 ## Packages used
 1. Laravel Sanctum for authentication
 2. Spatie laravel data for creating DTO objects and its validation 
@@ -29,3 +34,10 @@ Create .env.testing file for testing. Also, create a new DB for running automate
     /api/login
         - email should be valid
         - password should be minimum 5 characters
+
+2. Websites
+    /api/v1/websites
+        - Create websites
+            - url should be valid
+            - name, url and description can have a maximum of 255 characters
+            - category should be valid

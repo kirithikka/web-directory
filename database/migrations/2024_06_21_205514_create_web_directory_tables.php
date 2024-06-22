@@ -32,7 +32,7 @@ return new class extends Migration
             $table->index('name');
         });
 
-        Schema::create('categories_websites', function (Blueprint $table) {
+        Schema::create('category_website', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('category_id');
             $table->bigInteger('website_id');
