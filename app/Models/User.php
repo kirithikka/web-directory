@@ -45,4 +45,15 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Create a token for the user
+     *
+     */
+    public function createAndGetToken(): string
+    {
+        $token = $this->createToken($this->email. '-token')->plainTextToken;
+
+        return $token;
+    }
 }
