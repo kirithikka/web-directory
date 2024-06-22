@@ -13,6 +13,8 @@ To run the server, run
 php artisan serve
 ```
 
+Add SCOUT_DRIVER=database to .env file to use laravel scout's database driver
+
 Create .env.testing file for testing. Also, create a new DB for running automated tests. Use this DB name in the DB_DATABASE constant.
 
 To run the tests, run
@@ -22,7 +24,8 @@ php artisan test
 
 ## Packages used
 1. Laravel Sanctum for authentication
-2. Spatie laravel data for creating DTO objects and its validation 
+2. Spatie laravel data for creating DTO objects and its validation
+3. Laravel Scout for searching
 
 ## Validations:
 1. Authentication
@@ -40,4 +43,4 @@ php artisan test
         - Create websites
             - url should be valid
             - name, url and description can have a maximum of 255 characters
-            - category should be valid
+            - categories should be a valid array (only the ids present in the categories table)

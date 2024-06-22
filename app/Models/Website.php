@@ -2,14 +2,16 @@
 
 namespace App\Models;
 
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Website extends Model
 {
     use HasFactory;
+    use Searchable;
     use SoftDeletes;
 
     /**
@@ -26,10 +28,24 @@ class Website extends Model
     ];
 
     /**
-     * A website can belong to multiple categories
+     * Fields to search for
+     *
+     * @var array
      */
-    public function categories(): BelongsToMany
+    public function toSearchableArray()
     {
-        return $this->belongsToMany(Category::class);
+        return [
+            'name' => $this->name,
+            'url' => $this->url,
+            'description' => $this->description,
+        ];
+    }
+
+    /**
+     * A website can belong to multiple category-website
+     */
+    public function categoryWebsite(): HasMany
+    {
+        return $this->hasMany(CategoryWebsite::class, 'website_id', 'id')->with('category');
     }
 }

@@ -18,7 +18,7 @@ class CreateWebsiteData extends Data
         public string $url,
         #[Max(255)]
         public string $description,
-        public string $category_id,
+        public array $category_id,
     ) {
     }
 

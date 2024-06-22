@@ -8,7 +8,7 @@ return [
      * is an array, it will try to convert from the first format that works,
      * and will serialize dates using the first format from the array.
      */
-    'date_format' => DATE_ATOM,
+    'date_format' => [DATE_ATOM, 'Y-m-d\TH:i', 'Y-m-d\TH:i:s\.up', 'Y-m-d H:i:s', 'Y-m-d\TH:i:s'],
 
     /**
      * It is possible to enable certain features of the package, these would otherwise

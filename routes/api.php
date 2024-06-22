@@ -9,9 +9,19 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::post('/register', [AuthController::class, 'register'])->name('register');
+// routes for unauthenticated users
 Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/register', [AuthController::class, 'register'])->name('register');
 
+Route::prefix('v1')
+    ->group(static function() {
+
+        // websites
+        Route::get('/websites', [WebsiteController::class, 'index'])->name('websites.index');
+    });
+
+    
+// routes for authenticated users
 Route::middleware('auth:sanctum')->group(function() {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });

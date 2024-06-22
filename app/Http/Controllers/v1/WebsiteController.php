@@ -7,8 +7,8 @@ use App\Services\WebsiteService;
 use Illuminate\Http\JsonResponse;
 use App\Data\Websites\WebsiteData;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use App\Data\Websites\CreateWebsiteData;
+use App\Data\Websites\WebsiteQueryParamsData;
 use Illuminate\Validation\ValidationException;
 
 class WebsiteController extends Controller
@@ -20,8 +20,24 @@ class WebsiteController extends Controller
     /**
      * Get the list of websites
      */
-    public function index()
+    public function index(Request $request)
     {
+        $queryParams = $this->_getQueryParams($request);
+        $groupedWebsites = $this->websiteService->getCategoryGroupedWebsites($queryParams);
+
+        return response()->json([
+            'groupedWebsites' => $groupedWebsites
+        ]);
+    }
+
+    /**
+     * Get query params
+     */
+    public function _getQueryParams(Request $request)
+    {
+        return WebsiteQueryParamsData::from([
+            'q' => $request->query('q'),
+        ]);
     }
 
     /**
