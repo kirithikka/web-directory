@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\V1\VoteController;
 use App\Http\Controllers\v1\WebsiteController;
 
 Route::get('/user', function (Request $request) {
@@ -32,6 +33,10 @@ Route::middleware('auth:sanctum')
 
         // websites
         Route::post('/websites', [WebsiteController::class, 'store'])->name('websites.store');
+
+        // votes
+        Route::post('/vote', [VoteController::class, 'store'])->name('votes.store');
+        Route::post('/unvote', [VoteController::class, 'delete'])->name('votes.delete');
     });
 
 // route for admin users

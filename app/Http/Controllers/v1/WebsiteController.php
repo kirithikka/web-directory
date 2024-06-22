@@ -6,7 +6,6 @@ use App\Models\Website;
 use Illuminate\Http\Request;
 use App\Services\WebsiteService;
 use Illuminate\Http\JsonResponse;
-use App\Data\Websites\WebsiteData;
 use App\Http\Controllers\Controller;
 use App\Data\Websites\CreateWebsiteData;
 use App\Data\Websites\WebsiteQueryParamsData;

@@ -48,4 +48,13 @@ class Website extends Model
     {
         return $this->hasMany(CategoryWebsite::class, 'website_id', 'id')->with('category');
     }
+
+    /**
+     * Get the vote details of the website
+     *
+     */
+    public function votes() : HasMany
+    {
+        return $this->hasMany(Vote::class);
+    }
 }
