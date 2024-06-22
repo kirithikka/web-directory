@@ -33,3 +33,12 @@ Route::middleware('auth:sanctum')
         // websites
         Route::post('/websites', [WebsiteController::class, 'store'])->name('websites.store');
     });
+
+// route for admin users
+Route::middleware(['auth:sanctum', 'admin'])
+    ->prefix('v1')
+    ->group(static function() {
+
+        // websites
+        Route::delete('/websites/{website}', [WebsiteController::class, 'delete'])->name('websites.delete');
+    });

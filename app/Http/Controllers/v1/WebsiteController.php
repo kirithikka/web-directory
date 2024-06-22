@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\v1;
 
+use App\Models\Website;
 use Illuminate\Http\Request;
 use App\Services\WebsiteService;
 use Illuminate\Http\JsonResponse;
@@ -54,5 +55,16 @@ class WebsiteController extends Controller
         } catch (ValidationException $e) {
             return response()->json(['errors' => $e->errors()], 422);
         }
+    }
+
+    /**
+     * Delete a website
+     */
+    public function delete(Website $website): JsonResponse
+    {
+        $website->categoryWebsite()->delete();
+        $website->delete();
+
+        return response()->json(['message' => 'Website deleted successfully']);
     }
 }
