@@ -1,6 +1,8 @@
 Laravel RESTful APIs that function as a web directory
 
 ## Steps
+Create .env file in the root of the application. Copy the contents from .env.example to .env:
+
 Run the following commands:
 ```bash
 composer install
@@ -20,9 +22,7 @@ php artisan db:seed
 
 The above command creates two categories in the categories table and creates an admin user with the following credentials:
 - email: admin@example.com
-- password: password
-
-Add ```SCOUT_DRIVER=database``` to .env file to use laravel scout's database driver for searching.
+- password: passwordCreate .env file in the root of the application. Copy the contents from .env.example to .env and run the following commands:
 
 ## Testing
 
