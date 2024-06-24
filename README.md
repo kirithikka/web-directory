@@ -1,7 +1,8 @@
 Laravel RESTful APIs that function as a web directory
 
 ## Steps
-Create .env file in the root of the application. Copy the contents from .env.example to .env:
+- Create(if already not present) .env file in the root of the application. Copy the contents from .env.example to .env. 
+- Create a new DB and use this DB in the .env DB_DATABASE constants.
 
 Run the following commands:
 ```bash
@@ -22,7 +23,7 @@ php artisan db:seed
 
 The above command creates two categories in the categories table and creates an admin user with the following credentials:
 - email: admin@example.com
-- password: passwordCreate .env file in the root of the application. Copy the contents from .env.example to .env and run the following commands:
+- password: password
 
 ## Testing
 
