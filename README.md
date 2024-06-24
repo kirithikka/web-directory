@@ -63,6 +63,10 @@ php artisan test
     - /api/v1/unvote
         - Website id must be valid
 
+## Postman Collections
+Please find the postman collections here.
+https://drive.google.com/file/d/1JXWdli74xjkXBtbNQoHWUkUnbRnoUPN6/view?usp=drive_link
+
 
 ## Next Steps
 1. CRUD for Categories.
