@@ -29,7 +29,7 @@ The above command creates two categories in the categories table and creates an 
 
 - Create .env.testing file for testing. 
 - Create a new DB for running automated tests. Use this DB name in the .env.testing DB_DATABASE constant.
-- Add SCOUT_DRIVER=database to .env.testing file
+- Add SCOUT_DRIVER=database to .env.testing file (if not already present)
 
 To run the tests, run
 ```bash
