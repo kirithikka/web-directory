@@ -67,13 +67,18 @@ php artisan test
 Please find the postman collections here.
 https://drive.google.com/file/d/1JXWdli74xjkXBtbNQoHWUkUnbRnoUPN6/view?usp=drive_link
 
+## Details:
+To ensure the web directory is scalable, the following are implemented:
+- Database tables are indexed, particularly on columns that are frequently searched.
+- Implemented pagination for website search API to handle large datasets more efficiently.
 
 ## Next Steps
-1. CRUD for Categories.
-2. Set up Algolia as the Laravel Scout driver for powerful search capabilities.
-3. Error handling: Providing more informative and user friendly error messages.
-4. The system might need a robust logging system.
-5. Rate limiting can be implemented for the APIs to protect them from security threats.
-6. Unit tests: This project includes basic tests for Authentication APIs and Website creation. Additional tests for other functionalities can be added.
-7. Generating documentation using tools like Swagger.
-8. Implementing GitHub actions: To automate the tasks such as running tests, linting code, etc.
+1. Caching can be implemented for website search to optimize its performance and handle high loads efficiently.
+2. CRUD for Categories.
+3. Set up Algolia as the Laravel Scout driver for powerful search capabilities.
+4. Error handling: Providing more informative and user friendly error messages.
+5. The system might need a robust logging system.
+6. Rate limiting can be implemented for the APIs to protect them from security threats.
+7. Unit tests: This project includes basic tests for Authentication APIs and Website creation. Additional tests for other functionalities can be added.
+8. Generating documentation using tools like Swagger.
+9. Implementing GitHub actions: To automate the tasks such as running tests, linting code, etc.
