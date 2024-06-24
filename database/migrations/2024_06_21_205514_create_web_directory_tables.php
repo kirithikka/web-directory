@@ -22,7 +22,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('user_id');
             $table->string('name');
-            $table->string('url');
+            $table->string('url', 2048);
             $table->string('description')->nullable(true);
             $table->softDeletes();
             $table->timestamps();

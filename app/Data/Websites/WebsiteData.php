@@ -8,6 +8,7 @@ use Spatie\LaravelData\Data;
 class WebsiteData extends Data
 {
     public function __construct(
+        public int $id,
         public int $user_id,
         public string $name,
         public string $url,

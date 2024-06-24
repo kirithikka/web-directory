@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\CategoryWebsite;
 use Illuminate\Http\JsonResponse;
 use App\Data\Websites\WebsiteData;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Data\Websites\WebsiteQueryParamsData;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -24,12 +25,16 @@ class WebsiteService
                     ->select(
                         'categories.name as category_name',
                         'categories.description as category_description',
-                        'websites.*'
+                        'websites.*',
+                        DB::raw('COALESCE(COUNT(votes.id), 0) as vote_count')
                     )
                     ->join('category_website', 'category_website.category_id', '=', 'categories.id')
                     ->join('websites', 'websites.id', '=', 'category_website.website_id')
+                    ->leftJoin('votes', 'votes.website_id', '=', 'websites.id')
                     ->whereNull('websites.deleted_at')
-                    ->whereNull('category_website.deleted_at');
+                    ->whereNull('category_website.deleted_at')
+                    ->groupBy('categories.id', 'websites.id')
+                    ->orderBy('vote_count', 'DESC');
             })
             ->get()
             ->groupBy('category_name')

@@ -13,9 +13,22 @@ To run the server, run
 php artisan serve
 ```
 
-Add SCOUT_DRIVER=database to .env file to use laravel scout's database driver
+To run the seeder and populate the users and categories table, run 
+```bash
+php artisan db:seed
+```
 
-Create .env.testing file for testing. Also, create a new DB for running automated tests. Use this DB name in the DB_DATABASE constant.
+The above command creates two categories in the categories table and creates an admin user with the following credentials:
+- email: admin@example.com
+- password: password
+
+Add ```SCOUT_DRIVER=database``` to .env file to use laravel scout's database driver for searching.
+
+## Testing
+
+- Create .env.testing file for testing. 
+- Create a new DB for running automated tests. Use this DB name in the .env.testing DB_DATABASE constant.
+- Add SCOUT_DRIVER=database to .env.testing file
 
 To run the tests, run
 ```bash
@@ -29,18 +42,33 @@ php artisan test
 
 ## Validations:
 1. Authentication
-    /api/register
+    - /api/register
         - name should be 255 characters max
         - email should be valid
         - password should be minimum 5 characters
 
-    /api/login
+    - /api/login
         - email should be valid
         - password should be minimum 5 characters
 
 2. Websites
-    /api/v1/websites
-        - Create websites
-            - url should be valid
-            - name, url and description can have a maximum of 255 characters
-            - categories should be a valid array (only the ids present in the categories table)
+    - /api/v1/websites (Create websites)
+        - URL should be valid and unique
+        - Name, URL, and description can have a maximum of 255 characters
+        - Categories should be a valid array (only the IDs present in the categories table)
+
+3. Voting/Unvoting:
+    - /api/v1/vote
+    - /api/v1/unvote
+        - Website id must be valid
+
+
+## Next Steps
+1. CRUD for Categories.
+2. Set up Algolia as the Laravel Scout driver for powerful search capabilities.
+3. Error handling: Providing more informative and user friendly error messages.
+4. The system might need a robust logging system.
+5. Rate limiting can be implemented for the APIs to protect them from security threats.
+6. Unit tests: This project includes basic tests for Authentication APIs and Website creation. Additional tests for other functionalities can be added.
+7. Generating documentation using tools like Swagger.
+8. Implementing GitHub actions: To automate the tasks such as running tests, linting code, etc.

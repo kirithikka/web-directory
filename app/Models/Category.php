@@ -28,6 +28,8 @@ class Category extends Model
             'name' => $this->name,
             'description' => $this->description,
             'websites.name' => '',
+            'websites.url' => '',
+            'websites.description' => '',
         ];
     }
 

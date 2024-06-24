@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use App\Models\User;
 use  App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Laravel\Sanctum\Sanctum;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -26,7 +27,7 @@ class CreateWebsiteTest extends TestCase
             'name' => 'Google',
             'url' => 'https://www.google.com',
             'description' => 'Google search engine',
-            'category' => $category->name,
+            'category_id' => [$category->id],
         ]);
 
         $websiteData = $request->all();
@@ -45,7 +46,7 @@ class CreateWebsiteTest extends TestCase
      * Test website validation exception
      *
      */
-    public function test_website_valiadation_exception(): void
+    public function test_website_validation_exception(): void
     {
         Sanctum::actingAs(User::factory()->create());
 
@@ -53,7 +54,7 @@ class CreateWebsiteTest extends TestCase
             'name' => 'Google',
             'url' => 'google', // invalid url
             'description' => 'Google search engine',
-            'category' => 'Random category', // not a valid category
+            'category_id' => [Str::random()], // not a valid category
         ]);
 
         $websiteData = $request->all();
@@ -63,6 +64,6 @@ class CreateWebsiteTest extends TestCase
 
         $response->assertStatus(422);
         $this->assertEquals($responseData['errors']['url'][0], 'The url field must be a valid URL.');
-        $this->assertEquals($responseData['errors']['category'][0], 'The selected category is invalid.');
+        $this->assertEquals($responseData['errors']['category_id.0'][0], 'The selected category_id.0 is invalid.');
     }
 }

@@ -28,7 +28,7 @@ class RegisterTest extends TestCase
         $response = $this->post(route('register'), $userData);
         $responseData = $response->json();
 
-        $response->assertStatus(200);
+        $response->assertStatus(201);
         $this->assertSame($responseData['user']['name'], 'Username');
         $this->assertSame($responseData['user']['email'], 'user@gmail.com');
         $this->assertNotNull($responseData['token']);
@@ -53,7 +53,7 @@ class RegisterTest extends TestCase
         $response = $this->post(route('register'), $userData);
         $responseData = $response->json();
 
-        $response->assertStatus(200);
+        $response->assertStatus(409);
         $this->assertEquals($responseData['message'], 'User already registered. Please login');
     }
 

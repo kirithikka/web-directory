@@ -17,7 +17,7 @@ class AuthService
         // retrieve the user
         $user = User::where('email', $userData['email'])->first();
         if (!empty($user)) {
-            return response()->json(['message' => "User already registered. Please login"]);
+            return response()->json(['message' => "User already registered. Please login"], 409);
         }
 
         // create the user
@@ -33,7 +33,7 @@ class AuthService
         return response()->json([
             'token' => $token,
             'user' => $user,
-        ]);
+        ], 201);
     }
 
     /**
@@ -43,7 +43,7 @@ class AuthService
     {
         // check if the user's credentials are correct
         if (!Auth::attempt($userAuthData)) {
-            return response()->json(['errors' => "The provided credentials are incorrect"]);
+            return response()->json(['errors' => "The provided credentials are incorrect"], 401);
         }
 
         // retrieve the user
@@ -52,6 +52,6 @@ class AuthService
         // create and get a token for the valid user
         $token = $user->createAndGetToken();
 
-        return response()->json(['token' => $token]);
+        return response()->json(['token' => $token], 200);
     }
 }
